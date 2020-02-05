@@ -1,0 +1,50 @@
+<!--main-container-part-->
+<div id="content">
+  <!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a class="current">Histories</a> </div>
+  </div>
+  <!--End-breadcrumbs-->
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Histories</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Exam Name</th>
+                  <th>Class</th>
+                  <th>Quantity</th>
+                  <th>Time</th>
+                  <th>Date Create</th>
+                  <th>Grade</th>
+                  <th>User</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let history of histories">
+                <tr>
+                  <td>{{history.examDto.examName}}</td>
+                  <td>{{history.examDto.aclass.classname}}</td>
+                  <td>{{history.examDto.quantity}}</td>
+                  <td>{{history.examDto.examTypeDto}}</td>
+                  <td>{{history.date}}</td>
+                  <td>{{history.grade * 10}}</td>
+                  <td>{{history.userDto.fullName}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Action boxes-->
+</div>
+<app-spinner></app-spinner>
+<!--end-main-container-part-->

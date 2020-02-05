@@ -1,0 +1,17 @@
+<!--Header-part-->
+
+<div id="header">
+  <h1></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li class="dropdown" id="profile-messages"><a [routerLink]="'/admin/user/update/' + userId"><i
+          class="icon icon-user"></i> Welcome
+        {{userWelcome}}</a>
+    </li>
+    <li class=""><a title="" routerLink="" (click)="logout()"><i class="icon icon-share-alt"></i> Logout</a></li>
+  </ul>
+</div>

@@ -1,0 +1,48 @@
+<!--main-container-part-->
+<div id="content">
+  <!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+    </div>
+  </div>
+
+  <!--Chart-box-->
+  <div class="container-fluid">
+    <div class="quick-actions_homepage">
+      <!-- <div class="row-fluid"> -->
+      <div class="widget-box">
+        <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+          <h5>Site Analytics</h5>
+        </div>
+        <div class="widget-content">
+          <div class="row-fluid">
+            <div class="span7">
+              <canvas id="myChart" style="height: 20px;"></canvas>
+            </div>
+            <div class="span5">
+              <ul class="site-stats">
+                <li class="bg_lh" routerLink="/admin/user/getAll"><i class="icon-user"></i> <strong>2540</strong>
+                  <small>Total Users</small></li>
+                <li class="bg_lh" routerLink="/admin/user/getAll"><i class="icon-plus"></i> <strong>120</strong>
+                  <small>New Users </small></li>
+                <li class="bg_lh" routerLink="/admin/question"><i class="icon-question-sign"></i>
+                  <strong>656</strong> <small>Total Questions</small>
+                </li>
+                <li class="bg_lh" routerLink="/admin/question"><i class="icon-file"></i> <strong>9540</strong>
+                  <small>New Questions</small></li>
+                <li class="bg_lh" routerLink="/admin/exams"><i class="icon-inbox"></i> <strong>10</strong>
+                  <small>Total Exams</small></li>
+                <li class="bg_lh" routerLink="/admin/exams"><i class="icon-copy"></i> <strong>8540</strong>
+                  <small>New Exams</small></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+
+  <!--End-Chart-box-->
+  <app-spinner></app-spinner>
+  <!--end-main-container-part-->

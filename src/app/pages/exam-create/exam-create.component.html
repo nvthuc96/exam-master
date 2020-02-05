@@ -1,0 +1,73 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a>
+      <a routerLink="/admin/exams/getAllExamByCateId/1" class="tip-bottom">Exams</a> <a class="current">Create Exam</a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="offset1 span10">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Create Exam</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form class="form-horizontal" [formGroup]="examForm">
+              <div class="control-group">
+                <label class="control-label">Class :</label>
+                <div class="controls">
+                  <select #classId class="span3 searchSelect" (change)="getCategoryByClassId(classId.value)">
+                    <option *ngFor="let class of classList" [value]="class.id">{{class.classname}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Category :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect" formControlName="cateId">
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Exam Status :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect" formControlName="mockExam">
+                    <option value="false">Real Exam
+                    </option>
+                    <option value="true">Mock Exam
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Exam Type :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect" formControlName="typeId">
+                    <option *ngFor="let type of examType" [value]="type.id">{{type.type}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Exam name :</label>
+                <div class="controls">
+                  <input type="text" class="span5" placeholder="Name Exam..." formControlName="examName">
+                  <span class="help-inline"
+                    *ngIf="examForm.get('examName').hasError('required') && examForm.get('examName').touched">
+                    Exam name is required</span>
+                </div>
+              </div>
+              <div class="form-actions controls">
+                <button type="submit" class="btn btn-success" (click)="createExam()">Create</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner></app-spinner>

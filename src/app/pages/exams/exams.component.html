@@ -1,0 +1,71 @@
+<!--main-container-part-->
+<div id="content">
+  <!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a class="current">Exams</a> </div>
+  </div>
+  <!--End-breadcrumbs-->
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="controls controls-row">
+          <input type="text" placeholder="Search by exam name here..." class="span3 m-wrap" [(ngModel)]="searchByExam">
+          <select class="span2 searchSelect" [(ngModel)]="selectedClass">
+            <option value="0">Select Class</option>
+            <option *ngFor="let class of classList" [value]="class.id">{{class.classname}}</option>
+          </select>
+          <select #categoryId class="span2 searchSelect" [(ngModel)]="selectedCategory"
+            (change)="onchangeCategory(categoryId.value)">
+            <!-- <option value="0">Select Category</option> -->
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <select class="span2 searchSelect" [(ngModel)]="selectedDifficult">
+            <option value="0">Select Difficult</option>
+            <option *ngFor="let difficult of difficultList" [value]="difficult.id">{{difficult.level}}</option>
+          </select>
+          <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh"></i> Refresh</button>
+          <button class="btn btn-success btnList" routerLink="/admin/exams/create"><i class="icon-plus"></i>
+            Create</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Exams</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Exam Name</th>
+                  <th>Quantity</th>
+                  <th>Class</th>
+                  <th>Time</th>
+                  <th>Date Create</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let exam of examList">
+                <tr>
+                  <td>{{exam.examName}}</td>
+                  <td>{{exam.quantity}}</td>
+                  <td>{{exam.aclass.classname}}</td>
+                  <td>{{exam.examTypeDto}}</td>
+                  <td>{{exam.createdDate}}</td>
+                  <td>{{exam.active}}</td>
+                  <td class="text-center"><a [routerLink]="'/admin/question/getByExam/'+ exam.id"><i
+                        class="icon icon-edit"></i></a>
+                    | <a routerLink="/admin/exams" (click)="deleteExamById()"><i class="icon icon-remove"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Action boxes-->
+</div>
+<app-spinner></app-spinner>
+<!--end-main-container-part-->

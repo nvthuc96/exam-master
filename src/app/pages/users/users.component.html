@@ -1,0 +1,58 @@
+<!--main-container-part-->
+<div id="content">
+  <!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a class="current">Users</a> </div>
+  </div>
+  <!--End-breadcrumbs-->
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="controls controls-row">
+          <input type="text" placeholder="Search by name here..." class="span3 m-wrap" [(ngModel)]="searchByName">
+          <select class="span2 searchSelect" [(ngModel)]="selectedRole" (change)="getRole($event.target.value)">
+            <option value="0">Select Role</option>
+            <option *ngFor="let role of userRole" [ngValue]="role.id">{{role.role}}</option>
+          </select>
+          <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh"></i> Refresh</button>
+          <button class="btn btn-success btnList" routerLink="/admin/user/create"><i class="icon-plus"></i>
+            Create</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Users</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let user of users">
+                <tr class="gradeX">
+                  <td><a [routerLink]="'/admin/user/update/' + user.id">{{user.fullName}}</a></td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>{{user.role}}</td>
+                  <td class="text-center"><a [routerLink]="'/admin/user/update/' + user.id"><i
+                        class="icon icon-edit"></i></a> | <a routerLink="/admin/user/getAll"
+                      (click)="deleteUserById()"><i class="icon icon-remove"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Action boxes-->
+</div>
+<app-spinner></app-spinner>
+<!--end-main-container-part-->

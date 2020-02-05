@@ -1,0 +1,116 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a>
+      <a routerLink="/admin/category/getQuestion/1" class="tip-bottom">Questions</a>
+      <a class="current" *ngIf="typeForm==='detail'">Question Detail</a>
+      <a class="current" *ngIf="typeForm==='create'">Create Question</a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="offset1 span10">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5 *ngIf="typeForm==='create'">Create Question</h5>
+            <h5 *ngIf="typeForm==='detail'">Question detail</h5>
+          </div>
+          <div class="widget-content nopadding" [formGroup]="questionForm">
+            <div class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">Category :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect" formControlName="categoryId">
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Difficult :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect" formControlName="diffId">
+                    <option *ngFor="let difficult of questionDifficult" [value]="difficult.id">{{difficult.level}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Question :</label>
+                <div class="controls">
+                  <textarea class="span11" placeholder="Question..." formControlName="questionContent"></textarea>
+                  <span class="help-inline"
+                    *ngIf="questionForm.get('questionContent').hasError('required') && questionForm.get('questionContent').touched">
+                    Question is required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">A :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 1..." formControlName="answerFirst" />
+                  <span class="help-inline"
+                    *ngIf="questionForm.get('answerFirst').hasError('required') && questionForm.get('answerFirst').touched">
+                    Answer First is required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">B :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 2..." formControlName="answerSecond" />
+                  <span class="help-inline"
+                    *ngIf="questionForm.get('answerSecond').hasError('required') && questionForm.get('answerSecond').touched">
+                    Answer Second is required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">C :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 3..." formControlName="answerThird" />
+                  <span class="help-inline"
+                    *ngIf="questionForm.get('answerThird').hasError('required') && questionForm.get('answerThird').touched">
+                    Answer Third is required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">D :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 4..." formControlName="answerFour" />
+                  <span class="help-inline"
+                    *ngIf="questionForm.get('answerFour').hasError('required') && questionForm.get('answerFour').touched">
+                    Answer Four is required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Correct Answer :</label>
+                <div class="controls">
+                  <div *ngFor="let answer of answers" class="aswerDiv">
+                    <input [checked]="answer.id==='1'" class="answerRadio" type="radio" [id]="answer.id"
+                      [value]="answer.id" formControlName="correctPoint" />
+                    <label [for]="answer.id">{{answer.content}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Description Answer :</label>
+                <div class="controls">
+                  <textarea class="span11" placeholder="Description Answer..."
+                    formControlName="answerDescription"></textarea>
+                  <span class="help-inline"
+                    *ngIf="questionForm.get('answerDescription').hasError('required') && questionForm.get('answerDescription').touched">
+                    Description Answer is required</span>
+                </div>
+              </div>
+              <div class="form-actions controls">
+                <button *ngIf="typeForm==='create'" type="submit" class="btn btn-success"
+                  (click)="createQuestion()">Create</button>
+                <button *ngIf="typeForm==='detail'" type="submit" class="btn btn-success"
+                  (click)="getQuestionById()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner></app-spinner>
